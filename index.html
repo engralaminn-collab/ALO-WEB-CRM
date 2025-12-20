@@ -248,5 +248,38 @@ const supabaseUrl = "https://dzijcdmzttuvbizdldjd.supabase.co";
 const supabaseKey = "sb_publishable_WYjoOdJrxjbWEu6QVLLjww_1SMuwZI0";
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 </script>
->
+  
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = "https://dzijcdmzttuvbizdldjd.supabase.co";
+  const supabaseKey = "sb_publishable_WYjoOdJrxjbWEu6QVLLjww_1SMuwZI0";
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+  const form = document.getElementById("leadForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+      full_name: form.full_name.value,
+      phone: form.phone.value,
+      email: form.email.value,
+      destination: form.destination.value,
+      study_level: form.study_level.value,
+      course_interest: form.course_interest.value,
+      notes: form.notes.value
+    };
+
+    const { error } = await supabase.from("leads").insert([data]);
+
+    if (error) {
+      alert("Error saving lead");
+      console.error(error);
+    } else {
+      alert("Lead saved successfully");
+      form.reset();
+    }
+  });
+</script>
+</body>
 </html>
