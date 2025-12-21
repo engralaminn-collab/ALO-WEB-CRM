@@ -1,284 +1,53 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ALO Education — Study Abroad Consultancy</title>
-  <meta name="description" content="ALO Education: Study abroad admissions, visa support, counseling & partner services." />
-  <style>
-    :root{
-      --alo-orange:#ff6a00;
-      --alo-blue:#0b2a5b;
-      --bg:#0a1020;
-      --card:#0f1b36;
-      --text:#e9eefc;
-      --muted:#b8c3e6;
-      --line:rgba(255,255,255,.12);
+<script>
+  // ====== ALO | Website -> n8n Webhook (ONLY SCRIPT) ======
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("leadForm");
+    const status = document.getElementById("statusBox");
+
+    if (!form) {
+      console.error("Form with id='leadForm' not found");
+      return;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
-      color:var(--text);
-      background: radial-gradient(1200px 700px at 20% 10%, rgba(255,106,0,.18), transparent 60%),
-                  radial-gradient(900px 600px at 85% 20%, rgba(11,42,91,.5), transparent 55%),
-                  linear-gradient(180deg, #070b16, #050816);
-    }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
-      padding:14px 18px;border:1px solid var(--line);border-radius:16px;background:rgba(15,27,54,.55);
-      backdrop-filter: blur(10px);
-    }
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .logo{
-      width:36px;height:36px;border-radius:10px;
-      background: conic-gradient(from 210deg, var(--alo-orange), #ffd1b2, var(--alo-blue));
-      box-shadow:0 10px 30px rgba(255,106,0,.18);
-    }
-    nav{display:flex;flex-wrap:wrap;gap:10px}
-    nav a{
-      padding:8px 12px;border-radius:12px;border:1px solid transparent;color:var(--muted);
-    }
-    nav a:hover{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.04)}
-    .cta{
-      display:flex;gap:10px;align-items:center
-    }
-    .btn{
-      padding:10px 14px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(255,255,255,.04);color:var(--text);font-weight:700;
-      cursor:pointer
-    }
-    .btn.primary{
-      border-color:rgba(255,106,0,.45);
-      background: linear-gradient(135deg, rgba(255,106,0,.95), rgba(255,145,72,.9));
-      color:#160a00;
-      box-shadow:0 12px 35px rgba(255,106,0,.2);
-    }
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:18px}
-    .card{
-      border:1px solid var(--line);border-radius:18px;background:rgba(15,27,54,.55);
-      backdrop-filter: blur(10px);
-      padding:18px;
-    }
-    .headline{font-size:44px;line-height:1.05;margin:0 0 10px}
-    .sub{color:var(--muted);margin:0 0 14px;line-height:1.6}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-    .chip{
-      border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);
-      background:rgba(255,255,255,.04)
-    }
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
-    .mini h3{margin:0 0 8px}
-    .mini p{margin:0;color:var(--muted);line-height:1.5}
-    .form label{display:block;font-size:13px;color:var(--muted);margin:12px 0 6px}
-    .form input,.form select,.form textarea{
-      width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(5,8,22,.55);color:var(--text);
-      outline:none
-    }
-    .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .note{margin-top:10px;color:var(--muted);font-size:13px}
-    .status{
-      margin-top:12px;padding:10px 12px;border-radius:14px;border:1px dashed var(--line);
-      color:var(--muted);display:none
-    }
-    footer{margin:22px 0 8px;color:var(--muted);font-size:13px;text-align:center}
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr}
-      .headline{font-size:36px}
-      .grid3{grid-template-columns:1fr}
-      .row2{grid-template-columns:1fr}
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo"></div>
-        <div>
-          <div style="font-size:16px;letter-spacing:.2px">ALO Education</div>
-          <div style="font-size:12px;color:var(--muted)">Study Abroad • Admissions • Visa • Partner</div>
-        </div>
-      </div>
 
-      <nav>
-        <a href="#destinations">Destinations</a>
-        <a href="#course-finder">Course Finder</a>
-        <a href="#services">Services</a>
-        <a href="#resources">Resources</a>
-        <a href="#lead">Student Portal</a>
-        <a href="#lead">Partner Portal</a>
-      </nav>
-
-      <div class="cta">
-        <a class="btn" href="#lead">Free Assessment</a>
-        <a class="btn primary" href="#lead">Apply Now</a>
-      </div>
-    </div>
-
-    <div class="hero">
-      <div class="card">
-        <h1 class="headline">Study Abroad made <span style="color:var(--alo-orange)">simple</span>, fast & transparent.</h1>
-        <p class="sub">
-          We help Bangladeshi students choose the right university, prepare documents, submit applications,
-          and complete visa processes with proper guidance and compliance.
-        </p>
-
-        <div class="chips">
-          <div class="chip">✅ UK • Australia • Canada</div>
-          <div class="chip">✅ Scholarship & Low Deposit Options</div>
-          <div class="chip">✅ SOP • CAS • Visa Support</div>
-          <div class="chip">✅ Partner & Counselor Workflow</div>
-        </div>
-
-        <div class="grid3" id="services">
-          <div class="card mini">
-            <h3>Student Counseling</h3>
-            <p>Profile review, course selection, and best-fit university shortlist.</p>
-          </div>
-          <div class="card mini">
-            <h3>Application Support</h3>
-            <p>Document checklist, admission submission, offer tracking, and CAS support.</p>
-          </div>
-          <div class="card mini">
-            <h3>Visa & Compliance</h3>
-            <p>Financials, affidavits, TB, IHS/VFS steps, credibility preparation.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card form" id="lead">
-        <h2 style="margin:0 0 6px">Free Assessment Form</h2>
-        <p class="sub" style="margin:0 0 10px">Submit your details. Our counselor will contact you.</p>
-
-        <form id="leadForm">
-          <label>Full Name *</label>
-          <input name="fullName" required placeholder="e.g., Md Rahim" />
-
-          <div class="row2">
-            <div>
-              <label>Phone *</label>
-              <input name="phone" required placeholder="e.g., 018XXXXXXXX" />
-            </div>
-            <div>
-              <label>Email</label>
-              <input name="email" type="email" placeholder="e.g., you@email.com" />
-            </div>
-          </div>
-
-          <div class="row2" id="destinations">
-            <div>
-              <label>Destination</label>
-              <select name="destination">
-                <option value="UK">UK</option>
-                <option value="Australia">Australia</option>
-                <option value="Canada">Canada</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div id="course-finder">
-              <label>Study Level</label>
-              <select name="studyLevel">
-                <option value="Foundation">Foundation</option>
-                <option value="Undergraduate">Undergraduate</option>
-                <option value="Postgraduate">Postgraduate</option>
-                <option value="MRes/PhD">MRes/PhD</option>
-              </select>
-            </div>
-          </div>
-
-          <label>Course / Subject</label>
-          <input name="courseInterest" placeholder="e.g., Business, Nursing, Data Science" />
-
-          <label>Notes (optional)</label>
-          <textarea name="notes" rows="3" placeholder="Any special requirement (IELTS, budget, intake)"></textarea>
-
-          <button class="btn primary" type="submit" style="width:100%;margin-top:12px">Submit</button>
-
-          <div class="status" id="statusBox"></div>
-          <div class="note" id="resources">
-            By submitting, you agree to be contacted by ALO Education.
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <footer>© <span id="yr"></span> ALO Education • Bangladesh • Powered by DigitalOcean + Automation</footer>
-  </div>
-
-  <script>
-    document.getElementById("yr").textContent = new Date().getFullYear();
-
-    // ✅ CHANGE THIS ONLY (your n8n webhook):
     const WEBHOOK_URL = "https://automation.aloeducation.co.uk/webhook/lead-intake";
 
-    const form = document.getElementById("leadForm");
-    const box = document.getElementById("statusBox");
-
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
-      box.style.display = "block";
-      box.textContent = "Submitting...";
+
+      if (status) {
+        status.style.display = "block";
+        status.textContent = "Submitting...";
+      }
 
       const fd = new FormData(form);
-      const data = Object.fromEntries(fd.entries());
+
+      const payload = {
+        full_name: fd.get("fullName"),
+        phone: fd.get("phone"),
+        email: fd.get("email"),
+        destination: fd.get("destination"),
+        study_level: fd.get("studyLevel"),
+        course_interest: fd.get("courseInterest"),
+        notes: fd.get("notes")
+      };
 
       try {
         const res = await fetch(WEBHOOK_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
+          body: JSON.stringify(payload)
         });
-        const json = await res.json().catch(() => ({}));
 
-        if (!res.ok) throw new Error(json.message || "Failed");
+        if (!res.ok) throw new Error("Submit failed");
 
-        box.textContent = "✅ Submitted! Our counselor will contact you shortly.";
+        if (status) status.textContent = "✅ Submitted! Our counselor will contact you shortly.";
         form.reset();
       } catch (err) {
-        box.textContent = "❌ Error: " + err.message;
+        if (status) status.textContent = "❌ Error. Please try again.";
+        console.error(err);
       }
     });
-  </script>
-</<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const supabaseUrl = "https://dzijcdmzttuvbizdldjd.supabase.co";
-const supabaseKey = "sb_publishable_WYjoOdJrxjbWEu6QVLLjww_1SMuwZI0";
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-</script>
-  
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const supabaseUrl = "https://dzijcdmzttuvbizdldjd.supabase.co";
-  const supabaseKey = "sb_publishable_WYjoOdJrxjbWEu6QVLLjww_1SMuwZI0";
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-  const form = document.getElementById("leadForm");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = {
-      full_name: form.full_name.value,
-      phone: form.phone.value,
-      email: form.email.value,
-      destination: form.destination.value,
-      study_level: form.study_level.value,
-      course_interest: form.course_interest.value,
-      notes: form.notes.value
-    };
-
-    const { error } = await supabase.from("leads").insert([data]);
-
-    if (error) {
-      alert("Error saving lead");
-      console.error(error);
-    } else {
-      alert("Lead saved successfully");
-      form.reset();
-    }
   });
 </script>
 </body>
