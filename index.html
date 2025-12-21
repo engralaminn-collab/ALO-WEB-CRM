@@ -50,5 +50,58 @@
     });
   });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("leadForm");
+  const status = document.getElementById("statusBox");
+
+  if (!form) {
+    console.error("Form with id='leadForm' not found");
+    return;
+  }
+
+  // ✅ Production URL (workflow ACTIVE থাকলে এটা ব্যবহার করবেন)
+  const WEBHOOK_URL = "https://automation.aloeducation.co.uk/webhook/lead-intake";
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    if (status) {
+      status.style.display = "block";
+      status.textContent = "Submitting...";
+    }
+
+    const fd = new FormData(form);
+
+    const payload = {
+      full_name: fd.get("fullName"),
+      phone: fd.get("phone"),
+      email: fd.get("email"),
+      destination: fd.get("destination"),
+      study_level: fd.get("studyLevel"),
+      course_interest: fd.get("courseInterest"),
+      notes: fd.get("notes")
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error("Submit failed");
+
+      if (status) status.textContent = "✅ Submitted! Our counselor will contact you shortly.";
+      form.reset();
+    } catch (err) {
+      if (status) status.textContent = "❌ Error. Please try again.";
+      console.error(err);
+    }
+  });
+});
+</script>
+
 </body>
 </html>
